@@ -26,21 +26,21 @@ class welcome(QDialog, Ui_Dialog_3):
         QApplication.exit()
 
     def func1(self):
-        login = girisyap()
+        login = Log()
 
         widget.addWidget(login)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def func2(self):
-        hesap_olustur = hesap()
+        hesap_olustur = Reg()
 
         widget.addWidget(hesap_olustur)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
 
-class hesap(QDialog, Ui_Dialog_1):
+class Reg(QDialog, Ui_Dialog_1):
     def __init__(self):
-        super(hesap, self).__init__()
+        super(Reg, self).__init__()
         self.setupUi(self)
 
         self.b()
@@ -49,9 +49,9 @@ class hesap(QDialog, Ui_Dialog_1):
 
     def a(self):
 
-        onceki = welcome()
+        o = welcome()
 
-        widget.addWidget(onceki)
+        widget.addWidget(o)
         widget.setCurrentIndex(widget.currentIndex() + 1)
 
     def b(self):
@@ -80,10 +80,10 @@ class hesap(QDialog, Ui_Dialog_1):
             self.label_7.setText("Аккаунт создан")
 
 
-class girisyap(QDialog, Ui_Dialog_2):
+class Log(QDialog, Ui_Dialog_2):
     def __init__(self):
 
-        super(girisyap, self).__init__()
+        super(Log, self).__init__()
         self.setupUi(self)
 
         self.pushButton_3.clicked.connect(self.c)
@@ -107,8 +107,8 @@ class girisyap(QDialog, Ui_Dialog_2):
         else:
             con = sqlite3.connect(r"infos.db")
             cur = con.cursor()
-            sorgu = "SELECT password from bilgiler WHERE user = \'" + user + "\'"
-            cur.execute(sorgu)
+            s = "SELECT password from bilgiler WHERE user = \'" + user + "\'"
+            cur.execute(s)
             sonuc = cur.fetchall()
 
             a = sonuc[0]
